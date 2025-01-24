@@ -15,5 +15,15 @@ edition = "2021"
 
 [dependencies]
 num-traits = "0.2.19"
+cfg-if = "1.0"
+paste = "1.0"
+
+[features]
+default = ["std"]
+std = []
+simd = ["std"]
+
+[target.'cfg(target_arch = "aarch64")'.dependencies]
+stdsimd = { version = "0.0.4", optional = true }
 
 [lib]

@@ -518,6 +518,9 @@ pub trait FieldExtensionTower: FieldExtension {
     fn extension_degree(i: usize) -> usize;
 }
 
+#[cfg(feature = "simd")]
+pub mod simd;
+
 // Blanket implementations for basic operation traits
 impl<T: Add<Output = T>> ClosedAdd for T {}
 impl<T: for<'a> Add<&'a T, Output = T>> ClosedAddRef for T {}
@@ -624,3 +627,12 @@ impl<T: Field + PartialOrd> OrderedField for T {}
 
 // FieldExtensionTower
 // Note: This cannot be implemented as a blanket impl because it requires specific knowledge about the tower structure
+
+
+// Implement marker traits for f64
+impl CommutativeAddition for f64 {}
+impl CommutativeMultiplication for f64 {}
+impl AssociativeAddition for f64 {}
+impl AssociativeMultiplication for f64 {}
+impl Distributive for f64 {}
+
